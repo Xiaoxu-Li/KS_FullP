@@ -5,11 +5,11 @@ L = 5;
 Neig= 1;
 Ecr = 100;
 Egf = 200; % (to calculate the potential element)
-Eg = 500;
 %%
 [lambdar,~,dofg] = solve_eigen(L, Ecr, Neig, Egf);
 %%
 for Ec=1:3:30
+    Eg = 4*Ec;
     [lambda,phi,~,vec_k] = solve_eigen(L, Ec, Neig, Egf);
     [err_post,err_post2,err_post12, invlapres_fftk,Hv,Hpiv,res] = PMresidual(L, Ec, Neig, Eg, phi);
     [err_postinv,Hm] = residualinv(L, Ec, Neig, Eg, phi);
